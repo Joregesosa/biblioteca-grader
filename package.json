@@ -1,0 +1,14 @@
+{
+  "name": "biblioteca-grader",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Verifica la prueba técnica Biblioteca Comunitaria",
+  "scripts": {
+    "grade": "node grade.mjs"
+  },
+  "packageManager": "pnpm@10.33.2",
+  "dependencies": {
+    "playwright-core": "^1.56.1"
+  }
+}
