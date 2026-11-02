@@ -208,13 +208,14 @@ const ruta = (sufijo) => (url) => new URL(url).pathname.endsWith(sufijo)
 
 async function nuevaPagina(usuario) {
   const context = await browser.newContext()
+  const tokenSesion = usuario ? token(usuario) : null
   if (usuario) {
-    const estado = { state: { token: token(usuario), usuario, isAuthenticated: true }, version: 0 }
+    const estado = { state: { token: tokenSesion, usuario, isAuthenticated: true }, version: 0 }
     await context.addInitScript((valor) => localStorage.setItem('auth-storage', valor), JSON.stringify(estado))
   }
   const page = await context.newPage()
   page.setDefaultTimeout(6000)
-  return { page, context, token: usuario ? token(usuario) : null }
+  return { page, context, token: tokenSesion }
 }
 
 async function responderMock(route, status, json) {
